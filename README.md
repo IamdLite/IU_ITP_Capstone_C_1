@@ -1,107 +1,124 @@
 # IU_ITP_Capstone_C_1
 
-# A. based sum
+## A. Based Sum
 
-time limit per test1 second
-memory limit per test256 megabytes
-inputinput.txt
-outputoutput.txt
+### Problem Statement
 
-You will be given an integer N
- representing the amount of numbers you will need to process. A string S
- consisting of space-separated numbers of the following bases: binary, octal, decimal and, hexadecimal. An array A
- consisting of the bases of each number in S
- which will be represented in the input in the following decimal values [2, 8, 10, 16].
+You will be given:
 
-Your task is to perform the following arithmetic operations on the numbers in S
-:
+1. An integer `N` representing the number of numbers to process.
+2. A string `S` consisting of space-separated numbers in the following bases: binary, octal, decimal, and hexadecimal.
+3. An array `A` consisting of the bases of each number in `S`, represented as `[2, 8, 10, 16]` in decimal.
 
-Increase each odd-indexed number by 10 in decimal format.
-Decrease each even-indexed number by 10 in decimal format.
-Finally, output the sum of the resulting numbers in decimal.
+Your task is to:
+1. **Increase** each odd-indexed number by 10 in decimal format.
+2. **Decrease** each even-indexed number by 10 in decimal format.
+3. Output the **sum** of the resulting numbers in decimal.
 
-For example, given the following input:
+If the input is invalid, output `"Invalid inputs"`.
 
-N
- = 4
-S
- = 100101 1EF 274 2024
-A
- = 2 16 8 10
-The decimal representation of the numbers will be the following:
+---
 
-binary(100101) →
- decimal(37)
-hexadecimal(1EF) →
- decimal(495)
-octal(274) →
- decimal(188)
-decimal(2024) →
- decimal(2024)
-To do the arithmetic operations we will need to add 10 to odd-indexed elements and subtract 10 from even-indexed elements:
+### Input
 
-index(0) = 37 →
- 37 - 10 = 27
-index(1) = 495 →
- 495 + 10 = 505
-index(2) = 188 →
- 188 - 10 = 178
-index(3) = 2024 →
- 2024 + 10 = 2034
-After that, we calculate the sum of the results and output it: 27 + 505 + 178 + 2034 = 2744
+The input will be read from `input.txt`:
+- **First Line**: An integer `N` where \( 1 \leq N \leq 40 \).
+- **Second Line**: A string `S` consisting of `N` space-separated positive numbers, where each number consists of at most 6 digits from `[0-9, A-F]`.
+- **Third Line**: An array `A` of size `N`, where \( A[i] \in \{ 2, 8, 10, 16 \} \) for \( 0 \leq i < N \).
 
-Furthermore, you have to verify that the input is correct, and if not you have to output "Invalid inputs".
+---
 
-You should expect testcases that do not conform to the input restriction explained below in the input format section, and you have to handle these testcases by verifying that the input is correct, and if not you have to output "Invalid inputs".
+### Output
 
-An example of invalid inputs:
+The output should be written to `output.txt`:
+- A single integer representing the decimal sum of all numbers after performing the arithmetic operations.
+- If the input is invalid, output `"Invalid inputs"`.
 
-N
- = 2
-S
- = 2059 8163
-A
- = 16 8
-because the first digit in "8163" does not exist in the octal system (octal digits: [0, 1, 2, 3, 4, 5, 6, 7]).
-Input
-input.txt:
+Add a newline character (`\n`) after the output.
 
-First line: an integer N
- (1 ≤ N
- ≤ 40).
-Second line: a string S
- consisting of N
- space-separated positive numbers where each number consists of at most 6 digits from the following set of digits [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F].
-Third line: an array A
- consisting of N
- elements where (A[i]
- ∈
- [2, 8, 10, 16]; 0 ≤ i
- < N
-).
-Output
-The output should be written to output.txt and should contain the following:
+---
 
-First line: an integer representing the decimal form of the sum of all numbers after performing the mentioned arithmetic operations or "Invalid inputs".
-Examples
-InputCopy
-2
-2059 8163
-16 8
-OutputCopy
-Invalid inputs
-InputCopy
-4
-100101 1EF 274 2024
-2 16 8 10
-OutputCopy
-2744
-Note
-Remember that array indexing starts from 0
-You need to print a newline character "\n" after your output. E.g: if the solution is "Invalid inputs" then you should print "Invalid inputs\n".
-You will be reading and writing from files, not standard input/output.
-binary digits: [0, 1]
-octal digits: [0, 1, 2, 3, 4, 5, 6, 7]
-decimal digits: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-hexadecimal digits: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]
+### Rules for Validation
 
+1. Ensure all numbers in `S` are valid in their respective bases as defined in `A`.
+2. If any number in `S` is invalid according to its base, output `"Invalid inputs"`.
+
+---
+
+### Examples
+
+#### Example 1: Invalid Input
+
+**Input (`input.txt`)**:
+
+**Output (`output.txt`)**:
+
+
+**Explanation**: The number `8163` contains the digit `8`, which is not valid in the octal system.
+
+---
+
+#### Example 2: Valid Input
+
+**Input (`input.txt`)**:
+
+**Output (`output.txt`)**:
+
+**Explanation**:
+1. Convert the numbers in `S` to decimal:
+   - Binary `100101` → Decimal `37`
+   - Hexadecimal `1EF` → Decimal `495`
+   - Octal `274` → Decimal `188`
+   - Decimal `2024` → Decimal `2024`
+2. Perform arithmetic operations:
+   - Index 0: \( 37 - 10 = 27 \)
+   - Index 1: \( 495 + 10 = 505 \)
+   - Index 2: \( 188 - 10 = 178 \)
+   - Index 3: \( 2024 + 10 = 2034 \)
+3. Sum the results: \( 27 + 505 + 178 + 2034 = 2744 \).
+
+---
+
+### Notes
+
+1. **Valid Digits**:
+   - **Binary digits**: `[0, 1]`
+   - **Octal digits**: `[0, 1, 2, 3, 4, 5, 6, 7]`
+   - **Decimal digits**: `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
+   - **Hexadecimal digits**: `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]`
+2. Remember to handle invalid inputs gracefully.
+3. Array indexing starts from 0.
+
+---
+
+### Implementation Guidelines
+
+1. **Reading Input**:
+   - Read `N`, `S`, and `A` from `input.txt`.
+   - Validate that the inputs conform to the constraints.
+
+2. **Conversion to Decimal**:
+   - Convert each number in `S` to decimal using its respective base from `A`.
+
+3. **Arithmetic Operations**:
+   - Add 10 to the decimal representation of numbers at odd indices.
+   - Subtract 10 from the decimal representation of numbers at even indices.
+
+4. **Validation**:
+   - Ensure that each number in `S` conforms to its base.
+   - If any number is invalid, output `"Invalid inputs"`.
+
+5. **Output**:
+   - Write the result to `output.txt` followed by a newline.
+
+6. **Edge Cases**:
+   - Inputs where `S` contains invalid numbers for the given base.
+   - Minimal values for `N` (e.g., \( N = 1 \)).
+   - Inputs with mixed valid and invalid numbers.
+
+---
+
+### Additional Notes
+
+- The output should strictly adhere to the format, including a newline character at the end.
+- For invalid inputs, stop further processing and immediately output `"Invalid inputs\n"`.
